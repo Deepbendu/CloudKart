@@ -2,41 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* CloudKart Design System - Cloud-themed professional interface */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Cloud-themed color palette */
+    --background: 210 20% 98%;
+    --foreground: 220 13% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 13% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 13% 18%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* AWS Orange inspired primary */
+    --primary: 33 100% 52%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 33 100% 45%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Azure Blue secondary */
+    --secondary: 207 90% 54%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* GCP Blue muted */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Soft accent */
+    --accent: 210 40% 96%;
+    --accent-foreground: 220 13% 18%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 207 90% 54%;
 
     --radius: 0.5rem;
+
+    /* Cloud gradients and effects */
+    --gradient-primary: linear-gradient(135deg, hsl(33 100% 52%), hsl(33 100% 45%));
+    --gradient-secondary: linear-gradient(135deg, hsl(207 90% 54%), hsl(207 90% 47%));
+    --gradient-hero: linear-gradient(135deg, hsl(207 90% 54%) 0%, hsl(33 100% 52%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 20% 98%));
+    
+    /* Cloud service provider colors */
+    --aws-orange: 33 100% 52%;
+    --azure-blue: 207 90% 54%;
+    --gcp-blue: 217 89% 61%;
+    --gcp-green: 142 76% 36%;
+    --gcp-yellow: 45 100% 51%;
+    --gcp-red: 4 90% 58%;
+    
+    /* Shadows and effects */
+    --shadow-soft: 0 1px 3px 0 hsl(220 13% 18% / 0.1), 0 1px 2px 0 hsl(220 13% 18% / 0.06);
+    --shadow-medium: 0 4px 6px -1px hsl(220 13% 18% / 0.1), 0 2px 4px -1px hsl(220 13% 18% / 0.06);
+    --shadow-large: 0 10px 15px -3px hsl(220 13% 18% / 0.1), 0 4px 6px -2px hsl(220 13% 18% / 0.05);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     --sidebar-background: 0 0% 98%;
 
