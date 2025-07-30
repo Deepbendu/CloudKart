@@ -20,7 +20,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
   const providerStats = [
     { name: "AWS", services: 42, color: "bg-aws", icon: Cloud },
     { name: "Azure", services: 38, color: "bg-azure", icon: Cloud },
-    { name: "GCP", services: 35, color: "bg-gcp-blue", icon: Cloud },
+    { name: "GCP", services: 35, color: "bg-gcp-primary", icon: Cloud },
   ];
 
   const categories = [
@@ -43,7 +43,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
       description: "Side-by-side feature comparison",
       icon: TrendingUp,
       action: () => onNavigate("compare"),
-      variant: "secondary" as const,
+      variant: "comparison" as const,
     },
     {
       title: "Estimate Costs",

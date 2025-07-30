@@ -54,7 +54,7 @@ const ServiceComparison = () => {
     switch (provider) {
       case 'AWS': return 'border-l-aws bg-aws/5';
       case 'Azure': return 'border-l-azure bg-azure/5';
-      case 'GCP': return 'border-l-gcp-blue bg-gcp-blue/5';
+      case 'GCP': return 'border-l-gcp-primary bg-gcp-primary/5';
       default: return 'border-l-muted bg-muted/5';
     }
   };
@@ -244,7 +244,7 @@ const ServiceComparison = () => {
                       <div className="flex items-center justify-between">
                         <div>
                           <h4 className="font-semibold text-lg">{serviceGroup.gcp.name}</h4>
-                          <Badge className="bg-gcp-blue text-white mt-1">GCP</Badge>
+                          <Badge className="bg-gcp-primary text-white mt-1">GCP</Badge>
                         </div>
                         <Button
                           variant={comparisonServices.includes(serviceGroup.gcp.id) ? "default" : "outline"}
@@ -262,12 +262,12 @@ const ServiceComparison = () => {
                       
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
-                          <DollarSign className="h-4 w-4 text-gcp-blue" />
+                          <DollarSign className="h-4 w-4 text-gcp-primary" />
                           <span className="font-medium">{serviceGroup.gcp.pricing}</span>
                         </div>
                         
                         <div className="flex items-center gap-2">
-                          <Globe className="h-4 w-4 text-gcp-blue" />
+                          <Globe className="h-4 w-4 text-gcp-primary" />
                           <span className="text-sm">{serviceGroup.gcp.regions.length} regions</span>
                         </div>
                         
@@ -284,7 +284,7 @@ const ServiceComparison = () => {
                         <ul className="text-sm text-muted-foreground space-y-1">
                           {serviceGroup.gcp.features.slice(0, 3).map((feature, i) => (
                             <li key={i} className="flex items-start gap-2">
-                              <Check className="h-3 w-3 text-gcp-blue mt-0.5 flex-shrink-0" />
+                              <Check className="h-3 w-3 text-gcp-primary mt-0.5 flex-shrink-0" />
                               {feature}
                             </li>
                           ))}
@@ -326,7 +326,7 @@ const ServiceComparison = () => {
                           <Badge className={
                             service.provider === 'AWS' ? 'bg-aws text-white' :
                             service.provider === 'Azure' ? 'bg-azure text-white' :
-                            'bg-gcp-blue text-white'
+                            'bg-gcp-primary text-white'
                           }>
                             {service.provider}
                           </Badge>

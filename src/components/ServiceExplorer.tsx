@@ -28,7 +28,7 @@ const ServiceExplorer = () => {
     switch (provider) {
       case 'AWS': return 'bg-aws text-white';
       case 'Azure': return 'bg-azure text-white';
-      case 'GCP': return 'bg-gcp-blue text-white';
+      case 'GCP': return 'bg-gcp-primary text-white';
       default: return 'bg-muted text-muted-foreground';
     }
   };

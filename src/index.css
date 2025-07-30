@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    /* Cloud-themed color palette */
+    /* Updated CloudKart color palette */
     --background: 210 20% 98%;
     --foreground: 220 13% 18%;
 
@@ -16,43 +16,45 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 18%;
 
-    /* AWS Orange inspired primary */
-    --primary: 33 100% 52%;
+    /* Primary - Deep purple for modern tech feel */
+    --primary: 262 83% 58%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 33 100% 45%;
+    --primary-hover: 262 83% 50%;
 
-    /* Azure Blue secondary */
-    --secondary: 207 90% 54%;
+    /* Secondary - Teal for comparison theme */
+    --secondary: 173 80% 40%;
     --secondary-foreground: 0 0% 100%;
 
-    /* GCP Blue muted */
+    /* Muted remains subtle */
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    /* Soft accent */
-    --accent: 210 40% 96%;
-    --accent-foreground: 220 13% 18%;
+    /* Accent - Light purple */
+    --accent: 262 32% 92%;
+    --accent-foreground: 262 83% 25%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 207 90% 54%;
+    --ring: 262 83% 58%;
 
     --radius: 0.5rem;
 
-    /* Cloud gradients and effects */
-    --gradient-primary: linear-gradient(135deg, hsl(33 100% 52%), hsl(33 100% 45%));
-    --gradient-secondary: linear-gradient(135deg, hsl(207 90% 54%), hsl(207 90% 47%));
-    --gradient-hero: linear-gradient(135deg, hsl(207 90% 54%) 0%, hsl(33 100% 52%) 100%);
+    /* Updated gradients with new theme */
+    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(262 83% 50%));
+    --gradient-secondary: linear-gradient(135deg, hsl(173 80% 40%), hsl(173 80% 35%));
+    --gradient-hero: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(173 80% 40%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 20% 98%));
+    --gradient-comparison: linear-gradient(135deg, hsl(173 80% 40%) 0%, hsl(142 76% 50%) 100%);
     
-    /* Cloud service provider colors */
+    /* Cloud service provider colors - GCP now green */
     --aws-orange: 33 100% 52%;
     --azure-blue: 207 90% 54%;
-    --gcp-blue: 217 89% 61%;
-    --gcp-green: 142 76% 36%;
+    --gcp-primary: 142 76% 50%; /* Main GCP green */
+    --gcp-green: 142 76% 50%;
+    --gcp-blue: 217 89% 61%; /* Keep as secondary */
     --gcp-yellow: 45 100% 51%;
     --gcp-red: 4 90% 58%;
     

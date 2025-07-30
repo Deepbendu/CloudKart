@@ -19,9 +19,10 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         hero: "bg-gradient-hero text-white hover:opacity-90 transform hover:scale-105 shadow-large font-semibold",
+        comparison: "bg-gradient-comparison text-white hover:opacity-90 transform hover:scale-105 shadow-medium font-semibold",
         aws: "bg-aws text-white hover:bg-aws/90 transform hover:scale-105 shadow-soft",
         azure: "bg-azure text-white hover:bg-azure/90 transform hover:scale-105 shadow-soft",
-        gcp: "bg-gcp-blue text-white hover:bg-gcp-blue/90 transform hover:scale-105 shadow-soft",
+        gcp: "bg-gcp-primary text-white hover:bg-gcp-primary/90 transform hover:scale-105 shadow-soft",
       },
       size: {
         default: "h-10 px-4 py-2",

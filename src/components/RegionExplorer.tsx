@@ -81,7 +81,7 @@ const RegionExplorer = () => {
     switch (provider) {
       case 'AWS': return 'text-aws';
       case 'Azure': return 'text-azure';
-      case 'GCP': return 'text-gcp-blue';
+      case 'GCP': return 'text-gcp-primary';
       default: return 'text-muted-foreground';
     }
   };
@@ -90,7 +90,7 @@ const RegionExplorer = () => {
     switch (provider) {
       case 'AWS': return 'bg-aws text-white';
       case 'Azure': return 'bg-azure text-white';
-      case 'GCP': return 'bg-gcp-blue text-white';
+      case 'GCP': return 'bg-gcp-primary text-white';
       default: return 'bg-muted text-muted-foreground';
     }
   };
@@ -163,7 +163,7 @@ const RegionExplorer = () => {
                   className={`h-2 rounded-full ${
                     provider === 'AWS' ? 'bg-aws' :
                     provider === 'Azure' ? 'bg-azure' :
-                    'bg-gcp-blue'
+                    'bg-gcp-primary'
                   }`}
                   style={{ width: `${(data.available / data.total) * 100}%` }}
                 />
@@ -312,7 +312,7 @@ const RegionExplorer = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-2 text-gcp-blue">GCP Region</h4>
+              <h4 className="font-semibold mb-2 text-gcp-primary">GCP Region</h4>
               <p className="text-sm text-muted-foreground mb-1">Region Code:</p>
               <p className="font-mono text-sm">{currentRegion.gcp}</p>
             </div>

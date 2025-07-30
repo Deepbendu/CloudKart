@@ -237,17 +237,17 @@ const CostEstimator = () => {
                 </Card>
 
                 {/* GCP Cost */}
-                <Card className={`${cheapest === 'gcp' ? 'ring-2 ring-gcp-blue border-gcp-blue' : ''}`}>
+                <Card className={`${cheapest === 'gcp' ? 'ring-2 ring-gcp-primary border-gcp-primary' : ''}`}>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <Badge className="bg-gcp-blue text-white">GCP</Badge>
+                      <Badge className="bg-gcp-primary text-white">GCP</Badge>
                       {cheapest === 'gcp' && (
                         <Badge variant="outline" className="text-green-600 border-green-600">
                           Cheapest
                         </Badge>
                       )}
                     </div>
-                    <div className="text-2xl font-bold text-gcp-blue mb-2">
+                    <div className="text-2xl font-bold text-gcp-primary mb-2">
                       {formatCurrency(costs.gcp.total)}
                     </div>
                     <div className="space-y-1 text-sm">
@@ -301,9 +301,9 @@ const CostEstimator = () => {
                     
                     <Card>
                       <CardContent className="p-4 text-center">
-                        <Zap className="h-8 w-8 mx-auto text-gcp-blue mb-2" />
+                        <Zap className="h-8 w-8 mx-auto text-gcp-primary mb-2" />
                         <h3 className="font-semibold mb-1">Request Costs</h3>
-                        <p className="text-2xl font-bold text-gcp-blue">
+                        <p className="text-2xl font-bold text-gcp-primary">
                           {formatCurrency((costs.aws.requests + costs.azure.requests + costs.gcp.requests) / 3)}
                         </p>
                         <p className="text-sm text-muted-foreground">Average across providers</p>

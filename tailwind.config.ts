@@ -57,8 +57,9 @@ export default {
 				aws: 'hsl(var(--aws-orange))',
 				azure: 'hsl(var(--azure-blue))',
 				gcp: {
-					blue: 'hsl(var(--gcp-blue))',
+					primary: 'hsl(var(--gcp-primary))', /* Main green */
 					green: 'hsl(var(--gcp-green))',
+					blue: 'hsl(var(--gcp-blue))',
 					yellow: 'hsl(var(--gcp-yellow))',
 					red: 'hsl(var(--gcp-red))'
 				},
@@ -77,7 +78,8 @@ export default {
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-secondary': 'var(--gradient-secondary)',
 				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-card': 'var(--gradient-card)'
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-comparison': 'var(--gradient-comparison)'
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',
