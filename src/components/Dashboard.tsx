@@ -170,7 +170,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{action.title}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{action.description}</p>
-                <Button variant={action.variant} size="sm" className="w-full">
+                <Button variant={action.variant} size="sm" className="w-full bg-gradient-hero text-white hover:opacity-90">
                   Get Started
                 </Button>
               </CardContent>
