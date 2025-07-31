@@ -28,7 +28,7 @@ const Header = ({ activeTab, onTabChange }: HeaderProps) => {
               <h1 className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
                 CloudKart
               </h1>
-              <p className="text-sm text-muted-foreground">Multi-Cloud Comparison Platform</p>
+              <p className="text-sm text-muted-foreground">Multi-Cloud Comparison Hub</p>
             </div>
           </div>
 

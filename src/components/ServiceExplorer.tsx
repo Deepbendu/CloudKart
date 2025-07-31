@@ -1,28 +1,29 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { 
-  Cloud, 
-  Database, 
-  Server, 
-  Zap, 
-  Shield, 
-  Search,
+  Search, 
   Filter,
-  Star,
-  Gift
+  ExternalLink,
+  Server,
+  Database,
+  Zap,
+  Shield,
+  Globe,
+  Code2,
+  Container,
+  BarChart,
+  Network
 } from "lucide-react";
-import { cloudServices, categories, type CloudService } from "@/data/services";
+import { cloudServices, categories } from "@/data/services";
 
 const ServiceExplorer = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedProvider, setSelectedProvider] = useState("all");
-  const [showFreeTier, setShowFreeTier] = useState(false);
-  const [showPopular, setShowPopular] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedProvider, setSelectedProvider] = useState("");
 
   const getProviderColor = (provider: string) => {
     switch (provider) {
@@ -37,28 +38,51 @@ const ServiceExplorer = () => {
     switch (category) {
       case 'Compute': return Server;
       case 'Storage': return Database;
+      case 'Database': return Database;
+      case 'Serverless': return Zap;
       case 'AI/ML': return Zap;
       case 'Security': return Shield;
-      case 'Serverless': return Cloud;
-      default: return Cloud;
+      case 'Networking': return Network;
+      case 'DevOps': return Code2;
+      case 'Containers': return Container;
+      case 'Analytics': return BarChart;
+      default: return Globe;
     }
   };
 
-  const filteredServices = cloudServices.filter((service) => {
+  const getServiceTypeTag = (service: any) => {
+    // Generate functional tags based on service features and category
+    if (service.category === 'Compute') return 'Virtual Machines';
+    if (service.category === 'Storage') return 'Data Storage';
+    if (service.category === 'Database') return 'Data Management';
+    if (service.category === 'Serverless') return 'Event-Driven';
+    if (service.category === 'AI/ML') return 'Machine Learning';
+    if (service.category === 'Security') return 'Access Control';
+    if (service.category === 'Networking') return 'Network Infrastructure';
+    if (service.category === 'DevOps') return 'Automation';
+    if (service.category === 'Containers') return 'Container Management';
+    if (service.category === 'Analytics') return 'Data Analytics';
+    return 'Cloud Service';
+  };
+
+  // Filter services based on search term, category, and provider
+  const filteredServices = cloudServices.filter(service => {
     const matchesSearch = service.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          service.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "all" || service.category === selectedCategory;
-    const matchesProvider = selectedProvider === "all" || service.provider === selectedProvider;
-    const matchesFreeTier = !showFreeTier || service.freeTier;
-    const matchesPopular = !showPopular || service.popular;
+    const matchesCategory = selectedCategory === "" || service.category === selectedCategory;
+    const matchesProvider = selectedProvider === "" || service.provider === selectedProvider;
     
-    return matchesSearch && matchesCategory && matchesProvider && matchesFreeTier && matchesPopular;
+    return matchesSearch && matchesCategory && matchesProvider;
   });
 
-  const servicesByCategory = categories.reduce((acc, category) => {
-    acc[category] = filteredServices.filter(service => service.category === category);
+  // Group services by category
+  const servicesByCategory = filteredServices.reduce((acc, service) => {
+    if (!acc[service.category]) {
+      acc[service.category] = [];
+    }
+    acc[service.category].push(service);
     return acc;
-  }, {} as Record<string, CloudService[]>);
+  }, {} as Record<string, any[]>);
 
   return (
     <div className="space-y-6">
@@ -75,170 +99,188 @@ const ServiceExplorer = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Filter className="h-5 w-5" />
-            Filters
+            Filters & Search
           </CardTitle>
+          <CardDescription>
+            Find the perfect cloud services for your needs
+          </CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search services..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Search Services</label>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search by name or description..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
             </div>
-            
-            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-              <SelectTrigger>
-                <SelectValue placeholder="All Categories" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Categories</SelectItem>
-                {categories.map((category) => (
-                  <SelectItem key={category} value={category}>
-                    {category}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
 
-            <Select value={selectedProvider} onValueChange={setSelectedProvider}>
-              <SelectTrigger>
-                <SelectValue placeholder="All Providers" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Providers</SelectItem>
-                <SelectItem value="AWS">AWS</SelectItem>
-                <SelectItem value="Azure">Azure</SelectItem>
-                <SelectItem value="GCP">Google Cloud</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Category</label>
+              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                <SelectTrigger>
+                  <SelectValue placeholder="All Categories" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">All Categories</SelectItem>
+                  {categories.map((category) => (
+                    <SelectItem key={category} value={category}>
+                      {category}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-            <div className="flex gap-2">
-              <Button
-                variant={showFreeTier ? "default" : "outline"}
-                size="sm"
-                onClick={() => setShowFreeTier(!showFreeTier)}
-                className="flex-1"
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Provider</label>
+              <Select value={selectedProvider} onValueChange={setSelectedProvider}>
+                <SelectTrigger>
+                  <SelectValue placeholder="All Providers" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">All Providers</SelectItem>
+                  <SelectItem value="AWS">AWS</SelectItem>
+                  <SelectItem value="Azure">Azure</SelectItem>
+                  <SelectItem value="GCP">Google Cloud</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="flex items-end">
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setSearchTerm("");
+                  setSelectedCategory("");
+                  setSelectedProvider("");
+                }}
+                className="w-full"
               >
-                <Gift className="h-4 w-4 mr-1" />
-                Free Tier
-              </Button>
-              <Button
-                variant={showPopular ? "default" : "outline"}
-                size="sm"
-                onClick={() => setShowPopular(!showPopular)}
-                className="flex-1"
-              >
-                <Star className="h-4 w-4 mr-1" />
-                Popular
+                Clear Filters
               </Button>
             </div>
-          </div>
-          
-          <div className="text-sm text-muted-foreground">
-            Showing {filteredServices.length} services
           </div>
         </CardContent>
       </Card>
 
       {/* Services by Category */}
-      <div className="space-y-8">
-        {categories.map((category) => {
-          const services = servicesByCategory[category];
-          if (services.length === 0) return null;
-
-          const CategoryIcon = getCategoryIcon(category);
-
-          return (
-            <div key={category}>
-              <div className="flex items-center gap-3 mb-4">
-                <CategoryIcon className="h-6 w-6 text-primary" />
-                <h3 className="text-2xl font-semibold">{category}</h3>
-                <Badge variant="secondary">{services.length} services</Badge>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {services.map((service) => (
-                  <Card 
-                    key={service.id} 
-                    className="hover:shadow-medium transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
-                  >
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <CardTitle className="flex items-center gap-2">
-                            {service.name}
-                            <Badge className={getProviderColor(service.provider)}>
-                              {service.provider}
-                            </Badge>
-                          </CardTitle>
-                          <CardDescription className="mt-2">
-                            {service.description}
-                          </CardDescription>
-                        </div>
-                        {service.popular && (
-                          <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                        )}
-                      </div>
-                    </CardHeader>
-                    
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div>
-                          <p className="text-sm font-medium text-foreground">Pricing</p>
-                          <p className="text-lg font-semibold text-primary">{service.pricing}</p>
-                        </div>
-                        
-                        <div>
-                          <p className="text-sm font-medium text-foreground mb-2">Key Features</p>
-                          <div className="space-y-1">
-                            {service.features.slice(0, 3).map((feature, index) => (
-                              <div key={index} className="text-sm text-muted-foreground">
-                                • {feature}
-                              </div>
-                            ))}
+      {Object.keys(servicesByCategory).length > 0 ? (
+        <div className="space-y-8">
+          {Object.entries(servicesByCategory).map(([category, services]) => {
+            const CategoryIcon = getCategoryIcon(category);
+            return (
+              <div key={category}>
+                <div className="flex items-center gap-2 mb-4">
+                  <CategoryIcon className="h-6 w-6 text-primary" />
+                  <h3 className="text-2xl font-bold">{category}</h3>
+                  <Badge variant="outline">{services.length} services</Badge>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {services.map((service) => (
+                    <Card key={service.id} className="h-full hover:shadow-lg transition-shadow duration-200">
+                      <CardHeader>
+                        <div className="flex items-start justify-between">
+                          <div className="space-y-2">
+                            <CardTitle className="text-lg">{service.name}</CardTitle>
+                            <div className="flex items-center gap-2">
+                              <Badge className={getProviderColor(service.provider)}>
+                                {service.provider}
+                              </Badge>
+                              <Badge variant="secondary">
+                                {getServiceTypeTag(service)}
+                              </Badge>
+                            </div>
                           </div>
                         </div>
+                      </CardHeader>
+                      <CardContent className="space-y-4 flex-1">
+                        <p className="text-sm text-muted-foreground">
+                          {service.description}
+                        </p>
                         
-                        <div className="flex flex-wrap gap-2">
-                          {service.freeTier && (
-                            <Badge variant="outline" className="text-green-600 border-green-600">
-                              <Gift className="h-3 w-3 mr-1" />
-                              Free Tier
-                            </Badge>
-                          )}
-                          {service.tags.map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-xs">
-                              {tag}
-                            </Badge>
-                          ))}
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium">Pricing:</span>
+                            <span className="text-sm">{service.pricing}</span>
+                          </div>
+                          
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium">Regions:</span>
+                            <span className="text-sm">{service.regions.length} available</span>
+                          </div>
                         </div>
-                        
-                        <div>
-                          <p className="text-xs text-muted-foreground">
-                            Available in {service.regions.length} regions
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          );
-        })}
-      </div>
 
-      {filteredServices.length === 0 && (
+                        <div className="space-y-2">
+                          <span className="text-sm font-medium">Key Features:</span>
+                          <div className="flex flex-wrap gap-1">
+                            {service.features.slice(0, 3).map((feature: string, index: number) => (
+                              <Badge key={index} variant="outline" className="text-xs">
+                                {feature}
+                              </Badge>
+                            ))}
+                            {service.features.length > 3 && (
+                              <Badge variant="outline" className="text-xs">
+                                +{service.features.length - 3} more
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between pt-2">
+                          <div className="flex items-center gap-2">
+                            {service.freeTier && (
+                              <Badge className="bg-green-100 text-green-800 text-xs">
+                                Free Tier
+                              </Badge>
+                            )}
+                            {service.popular && (
+                              <Badge className="bg-blue-100 text-blue-800 text-xs">
+                                Popular
+                              </Badge>
+                            )}
+                          </div>
+                          
+                          {service.documentationUrl && (
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              asChild
+                              className="h-8 px-2"
+                            >
+                              <a 
+                                href={service.documentationUrl} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-1"
+                              >
+                                <ExternalLink className="h-3 w-3" />
+                                <span className="text-xs">Docs</span>
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
         <Card>
-          <CardContent className="p-12 text-center">
-            <Cloud className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+          <CardContent className="py-12 text-center">
+            <Search className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
             <h3 className="text-lg font-semibold mb-2">No services found</h3>
             <p className="text-muted-foreground">
-              Try adjusting your filters or search terms
+              Try adjusting your search terms or filters to find the services you're looking for.
             </p>
           </CardContent>
         </Card>

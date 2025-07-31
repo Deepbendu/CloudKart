@@ -41,9 +41,9 @@ const CostEstimator = () => {
     const azureTotal = azureCompute + azureStorage + azureRequests;
 
     // GCP Pricing (simplified)
-    const gcpCompute = hours * 0.0349; // e2-standard-2
-    const gcpStorage = storage * 0.020; // Cloud Storage
-    const gcpRequests = (reqs / 1000) * 0.0004;
+    const gcpCompute = hours * 0.0524; // e2-standard-2 (more realistic pricing)
+    const gcpStorage = storage * 0.026; // Cloud Storage
+    const gcpRequests = (reqs / 1000) * 0.0005;
     const gcpTotal = gcpCompute + gcpStorage + gcpRequests;
 
     return {

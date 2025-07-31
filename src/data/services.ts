@@ -10,6 +10,7 @@ export interface CloudService {
   tags: string[];
   freeTier: boolean;
   popular: boolean;
+  documentationUrl?: string;
 }
 
 export const categories = [
@@ -266,6 +267,226 @@ export const cloudServices: CloudService[] = [
     tags: ['NoSQL', 'Popular'],
     freeTier: true,
     popular: true
+  },
+
+  // Networking Services
+  {
+    id: 'aws-vpc',
+    name: 'VPC',
+    provider: 'AWS',
+    category: 'Networking',
+    description: 'Virtual private cloud for isolated compute resources',
+    pricing: 'Free (data transfer charges apply)',
+    features: ['Private Network', 'Subnets', 'Security Groups', 'NAT Gateway'],
+    regions: ['us-east-1', 'us-west-2', 'eu-west-1', 'ap-southeast-1'],
+    tags: ['Virtual Network', 'Core'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://aws.amazon.com/vpc/'
+  },
+  {
+    id: 'azure-vnet',
+    name: 'Virtual Network',
+    provider: 'Azure',
+    category: 'Networking',
+    description: 'Isolated network environment in Azure cloud',
+    pricing: 'Free (data transfer charges apply)',
+    features: ['Private Network', 'Subnets', 'Network Security Groups', 'VPN Gateway'],
+    regions: ['eastus', 'westus2', 'westeurope', 'southeastasia'],
+    tags: ['Virtual Network', 'Core'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://docs.microsoft.com/en-us/azure/virtual-network/'
+  },
+  {
+    id: 'gcp-vpc',
+    name: 'VPC',
+    provider: 'GCP',
+    category: 'Networking',
+    description: 'Global virtual private cloud spanning all regions',
+    pricing: 'Free (data transfer charges apply)',
+    features: ['Global Network', 'Subnets', 'Firewall Rules', 'Cloud NAT'],
+    regions: ['us-central1', 'us-west1', 'europe-west1', 'asia-southeast1'],
+    tags: ['Virtual Network', 'Core'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://cloud.google.com/vpc'
+  },
+
+  // Security Services
+  {
+    id: 'aws-iam',
+    name: 'IAM',
+    provider: 'AWS',
+    category: 'Security',
+    description: 'Identity and access management service',
+    pricing: 'Free',
+    features: ['User Management', 'Role-Based Access', 'Multi-Factor Authentication', 'Policy Management'],
+    regions: ['Global'],
+    tags: ['Identity Management', 'Core'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://aws.amazon.com/iam/'
+  },
+  {
+    id: 'azure-ad',
+    name: 'Active Directory',
+    provider: 'Azure',
+    category: 'Security',
+    description: 'Cloud-based identity and access management',
+    pricing: 'Free tier available',
+    features: ['Single Sign-On', 'Multi-Factor Authentication', 'Conditional Access', 'Identity Protection'],
+    regions: ['Global'],
+    tags: ['Identity Management', 'Core'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://docs.microsoft.com/en-us/azure/active-directory/'
+  },
+  {
+    id: 'gcp-iam',
+    name: 'Cloud IAM',
+    provider: 'GCP',
+    category: 'Security',
+    description: 'Unified identity and access management',
+    pricing: 'Free',
+    features: ['Fine-grained Access Control', 'Service Accounts', 'Audit Logs', 'Resource Hierarchy'],
+    regions: ['Global'],
+    tags: ['Identity Management', 'Core'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://cloud.google.com/iam'
+  },
+
+  // DevOps Services
+  {
+    id: 'aws-codepipeline',
+    name: 'CodePipeline',
+    provider: 'AWS',
+    category: 'DevOps',
+    description: 'Continuous delivery service for automated deployments',
+    pricing: 'From $1/active pipeline/month',
+    features: ['CI/CD Automation', 'Integration with AWS Services', 'Third-party Integrations', 'Visual Workflow'],
+    regions: ['us-east-1', 'us-west-2', 'eu-west-1', 'ap-southeast-1'],
+    tags: ['CI/CD', 'Automation'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://aws.amazon.com/codepipeline/'
+  },
+  {
+    id: 'azure-devops',
+    name: 'DevOps',
+    provider: 'Azure',
+    category: 'DevOps',
+    description: 'Complete DevOps toolchain for development teams',
+    pricing: 'Free for up to 5 users',
+    features: ['Azure Repos', 'Azure Pipelines', 'Azure Boards', 'Azure Artifacts'],
+    regions: ['Global'],
+    tags: ['CI/CD', 'Project Management'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://azure.microsoft.com/en-us/services/devops/'
+  },
+  {
+    id: 'gcp-build',
+    name: 'Cloud Build',
+    provider: 'GCP',
+    category: 'DevOps',
+    description: 'Serverless CI/CD platform for building and deploying',
+    pricing: '120 build-minutes/day free',
+    features: ['Docker Support', 'Native Git Integration', 'Vulnerability Scanning', 'Build Triggers'],
+    regions: ['us-central1', 'us-west1', 'europe-west1', 'asia-southeast1'],
+    tags: ['CI/CD', 'Serverless'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://cloud.google.com/build'
+  },
+
+  // Container Services
+  {
+    id: 'aws-ecs',
+    name: 'ECS',
+    provider: 'AWS',
+    category: 'Containers',
+    description: 'Fully managed container orchestration service',
+    pricing: 'No additional charges for EC2 launch type',
+    features: ['Docker Support', 'Service Discovery', 'Load Balancing', 'Auto Scaling'],
+    regions: ['us-east-1', 'us-west-2', 'eu-west-1', 'ap-southeast-1'],
+    tags: ['Container Orchestration', 'Docker'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://aws.amazon.com/ecs/'
+  },
+  {
+    id: 'azure-aks',
+    name: 'AKS',
+    provider: 'Azure',
+    category: 'Containers',
+    description: 'Managed Kubernetes service',
+    pricing: 'Free cluster management',
+    features: ['Kubernetes', 'Auto Scaling', 'Azure AD Integration', 'Virtual Nodes'],
+    regions: ['eastus', 'westus2', 'westeurope', 'southeastasia'],
+    tags: ['Kubernetes', 'Container Orchestration'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://docs.microsoft.com/en-us/azure/aks/'
+  },
+  {
+    id: 'gcp-gke',
+    name: 'GKE',
+    provider: 'GCP',
+    category: 'Containers',
+    description: 'Managed Kubernetes service',
+    pricing: 'Free cluster management for zonal clusters',
+    features: ['Kubernetes', 'Autopilot', 'Workload Identity', 'Binary Authorization'],
+    regions: ['us-central1', 'us-west1', 'europe-west1', 'asia-southeast1'],
+    tags: ['Kubernetes', 'Container Orchestration'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://cloud.google.com/kubernetes-engine'
+  },
+
+  // Analytics Services
+  {
+    id: 'aws-redshift',
+    name: 'Redshift',
+    provider: 'AWS',
+    category: 'Analytics',
+    description: 'Fast, scalable data warehouse',
+    pricing: 'From $0.25/hour',
+    features: ['Columnar Storage', 'Parallel Processing', 'Automatic Backups', 'Encryption'],
+    regions: ['us-east-1', 'us-west-2', 'eu-west-1', 'ap-southeast-1'],
+    tags: ['Data Warehouse', 'Big Data'],
+    freeTier: false,
+    popular: true,
+    documentationUrl: 'https://aws.amazon.com/redshift/'
+  },
+  {
+    id: 'azure-synapse',
+    name: 'Synapse Analytics',
+    provider: 'Azure',
+    category: 'Analytics',
+    description: 'Analytics service that brings together data integration and data warehousing',
+    pricing: 'Pay-per-use pricing',
+    features: ['Data Integration', 'Data Warehousing', 'Big Data Analytics', 'Machine Learning'],
+    regions: ['eastus', 'westus2', 'westeurope', 'southeastasia'],
+    tags: ['Data Warehouse', 'Big Data'],
+    freeTier: false,
+    popular: true,
+    documentationUrl: 'https://docs.microsoft.com/en-us/azure/synapse-analytics/'
+  },
+  {
+    id: 'gcp-bigquery',
+    name: 'BigQuery',
+    provider: 'GCP',
+    category: 'Analytics',
+    description: 'Serverless, highly scalable data warehouse',
+    pricing: 'First 1TB queries/month free',
+    features: ['Serverless', 'Real-time Analytics', 'Machine Learning', 'Geospatial Analysis'],
+    regions: ['us-central1', 'us-west1', 'europe-west1', 'asia-southeast1'],
+    tags: ['Data Warehouse', 'Serverless'],
+    freeTier: true,
+    popular: true,
+    documentationUrl: 'https://cloud.google.com/bigquery'
   }
 ];
 
