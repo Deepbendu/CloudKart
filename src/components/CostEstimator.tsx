@@ -35,15 +35,15 @@ const CostEstimator = () => {
     const awsTotal = awsCompute + awsStorage + awsRequests;
 
     // Azure Pricing (simplified)
-    const azureCompute = hours * 0.0464; // B2s equivalent
-    const azureStorage = storage * 0.0184; // Blob storage
+    const azureCompute = hours * 0.0548; // B2s equivalent (higher than AWS)
+    const azureStorage = storage * 0.0208; // Blob storage
     const azureRequests = (reqs / 10000) * 0.004;
     const azureTotal = azureCompute + azureStorage + azureRequests;
 
-    // GCP Pricing (simplified)
-    const gcpCompute = hours * 0.0524; // e2-standard-2 (more realistic pricing)
-    const gcpStorage = storage * 0.026; // Cloud Storage
-    const gcpRequests = (reqs / 1000) * 0.0005;
+    // GCP Pricing (simplified) - Most competitive
+    const gcpCompute = hours * 0.0389; // e2-standard-2 (competitive pricing)
+    const gcpStorage = storage * 0.020; // Cloud Storage
+    const gcpRequests = (reqs / 1000) * 0.0004;
     const gcpTotal = gcpCompute + gcpStorage + gcpRequests;
 
     return {

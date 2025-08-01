@@ -220,16 +220,11 @@ const ServiceExplorer = () => {
                         <div className="space-y-2">
                           <span className="text-sm font-medium">Key Features:</span>
                           <div className="flex flex-wrap gap-1">
-                            {service.features.slice(0, 3).map((feature: string, index: number) => (
+                            {service.features.map((feature: string, index: number) => (
                               <Badge key={index} variant="outline" className="text-xs">
                                 {feature}
                               </Badge>
                             ))}
-                            {service.features.length > 3 && (
-                              <Badge variant="outline" className="text-xs">
-                                +{service.features.length - 3} more
-                              </Badge>
-                            )}
                           </div>
                         </div>
 

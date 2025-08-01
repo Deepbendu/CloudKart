@@ -39,7 +39,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-east-1', 'us-west-2', 'eu-west-1', 'ap-southeast-1'],
     tags: ['Core', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.aws.amazon.com/ec2/'
   },
   {
     id: 'aws-s3',
@@ -52,7 +53,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-east-1', 'us-west-2', 'eu-west-1', 'ap-southeast-1'],
     tags: ['Core', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.aws.amazon.com/s3/'
   },
   {
     id: 'aws-rds',
@@ -65,7 +67,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-east-1', 'us-west-2', 'eu-west-1', 'ap-southeast-1'],
     tags: ['Core', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.aws.amazon.com/rds/'
   },
   {
     id: 'aws-lambda',
@@ -78,7 +81,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-east-1', 'us-west-2', 'eu-west-1', 'ap-southeast-1'],
     tags: ['Serverless', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.aws.amazon.com/lambda/'
   },
   {
     id: 'aws-sagemaker',
@@ -91,7 +95,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-east-1', 'us-west-2', 'eu-west-1'],
     tags: ['AI/ML', 'Popular'],
     freeTier: false,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.aws.amazon.com/sagemaker/'
   },
 
   // Azure Services
@@ -106,7 +111,8 @@ export const cloudServices: CloudService[] = [
     regions: ['eastus', 'westus2', 'westeurope', 'southeastasia'],
     tags: ['Core', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.microsoft.com/en-us/azure/virtual-machines/'
   },
   {
     id: 'azure-blob',
@@ -119,7 +125,8 @@ export const cloudServices: CloudService[] = [
     regions: ['eastus', 'westus2', 'westeurope', 'southeastasia'],
     tags: ['Core', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.microsoft.com/en-us/azure/storage/blobs/'
   },
   {
     id: 'azure-sql',
@@ -132,7 +139,8 @@ export const cloudServices: CloudService[] = [
     regions: ['eastus', 'westus2', 'westeurope', 'southeastasia'],
     tags: ['Core', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.microsoft.com/en-us/azure/azure-sql/'
   },
   {
     id: 'azure-functions',
@@ -145,7 +153,8 @@ export const cloudServices: CloudService[] = [
     regions: ['eastus', 'westus2', 'westeurope', 'southeastasia'],
     tags: ['Serverless', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.microsoft.com/en-us/azure/azure-functions/'
   },
   {
     id: 'azure-ml',
@@ -158,7 +167,8 @@ export const cloudServices: CloudService[] = [
     regions: ['eastus', 'westus2', 'westeurope'],
     tags: ['AI/ML', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.microsoft.com/en-us/azure/machine-learning/'
   },
 
   // GCP Services
@@ -173,7 +183,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-central1', 'us-west1', 'europe-west1', 'asia-southeast1'],
     tags: ['Core', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://cloud.google.com/compute'
   },
   {
     id: 'gcp-storage',
@@ -186,7 +197,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-central1', 'us-west1', 'europe-west1', 'asia-southeast1'],
     tags: ['Core', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://cloud.google.com/storage'
   },
   {
     id: 'gcp-sql',
@@ -199,7 +211,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-central1', 'us-west1', 'europe-west1', 'asia-southeast1'],
     tags: ['Core', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://cloud.google.com/sql'
   },
   {
     id: 'gcp-functions',
@@ -212,7 +225,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-central1', 'us-west1', 'europe-west1', 'asia-southeast1'],
     tags: ['Serverless', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://cloud.google.com/functions'
   },
   {
     id: 'gcp-ml',
@@ -225,7 +239,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-central1', 'us-west1', 'europe-west1'],
     tags: ['AI/ML', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://cloud.google.com/ai-platform'
   },
 
   // Additional services for more comprehensive comparison
@@ -240,7 +255,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-east-1', 'us-west-2', 'eu-west-1', 'ap-southeast-1'],
     tags: ['NoSQL', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.aws.amazon.com/dynamodb/'
   },
   {
     id: 'azure-cosmos',
@@ -253,7 +269,8 @@ export const cloudServices: CloudService[] = [
     regions: ['eastus', 'westus2', 'westeurope', 'southeastasia'],
     tags: ['NoSQL', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://docs.microsoft.com/en-us/azure/cosmos-db/'
   },
   {
     id: 'gcp-firestore',
@@ -266,7 +283,8 @@ export const cloudServices: CloudService[] = [
     regions: ['us-central1', 'us-west1', 'europe-west1', 'asia-southeast1'],
     tags: ['NoSQL', 'Popular'],
     freeTier: true,
-    popular: true
+    popular: true,
+    documentationUrl: 'https://cloud.google.com/firestore'
   },
 
   // Networking Services
