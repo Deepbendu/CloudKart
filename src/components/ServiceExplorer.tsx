@@ -22,8 +22,8 @@ import { cloudServices, categories } from "@/data/services";
 
 const ServiceExplorer = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedProvider, setSelectedProvider] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedProvider, setSelectedProvider] = useState("all");
 
   const getProviderColor = (provider: string) => {
     switch (provider) {
@@ -69,8 +69,8 @@ const ServiceExplorer = () => {
   const filteredServices = cloudServices.filter(service => {
     const matchesSearch = service.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          service.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "" || service.category === selectedCategory;
-    const matchesProvider = selectedProvider === "" || service.provider === selectedProvider;
+    const matchesCategory = selectedCategory === "all" || service.category === selectedCategory;
+    const matchesProvider = selectedProvider === "all" || service.provider === selectedProvider;
     
     return matchesSearch && matchesCategory && matchesProvider;
   });
@@ -127,7 +127,7 @@ const ServiceExplorer = () => {
                   <SelectValue placeholder="All Categories" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Categories</SelectItem>
+                  <SelectItem value="all">All Categories</SelectItem>
                   {categories.map((category) => (
                     <SelectItem key={category} value={category}>
                       {category}
@@ -144,7 +144,7 @@ const ServiceExplorer = () => {
                   <SelectValue placeholder="All Providers" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Providers</SelectItem>
+                  <SelectItem value="all">All Providers</SelectItem>
                   <SelectItem value="AWS">AWS</SelectItem>
                   <SelectItem value="Azure">Azure</SelectItem>
                   <SelectItem value="GCP">Google Cloud</SelectItem>
@@ -157,8 +157,8 @@ const ServiceExplorer = () => {
                 variant="outline" 
                 onClick={() => {
                   setSearchTerm("");
-                  setSelectedCategory("");
-                  setSelectedProvider("");
+                  setSelectedCategory("all");
+                  setSelectedProvider("all");
                 }}
                 className="w-full"
               >
