@@ -272,7 +272,7 @@ const CostEstimator = () => {
               <Tabs defaultValue="breakdown" className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="breakdown">Cost Breakdown</TabsTrigger>
-                  <TabsTrigger value="savings">Savings Analysis</TabsTrigger>
+                  <TabsTrigger value="migration">Migration Plan & Tips</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="breakdown" className="space-y-4">
@@ -312,36 +312,124 @@ const CostEstimator = () => {
                   </div>
                 </TabsContent>
                 
-                <TabsContent value="savings" className="space-y-4">
+                <TabsContent value="migration" className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <Card>
                       <CardContent className="p-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <TrendingUp className="h-5 w-5 text-green-600" />
-                          <h3 className="font-semibold">Potential Savings</h3>
+                        <div className="flex items-center gap-2 mb-3">
+                          <TrendingUp className="h-5 w-5 text-primary" />
+                          <h3 className="font-semibold">Migration Roadmap</h3>
                         </div>
-                        <p className="text-lg">
-                          Choosing {cheapest.toUpperCase()} over the most expensive option could save you{' '}
-                          <span className="font-bold text-green-600">
-                            {formatCurrency(
-                              Math.max(costs.aws.total, costs.azure.total, costs.gcp.total) - 
-                              Math.min(costs.aws.total, costs.azure.total, costs.gcp.total)
-                            )}
-                          </span>{' '}
-                          per month
-                        </p>
+                        <div className="space-y-3 text-sm">
+                          <div className="border-l-2 border-primary pl-3">
+                            <h4 className="font-medium text-primary">Phase 1: Assessment (Weeks 1-2)</h4>
+                            <p className="text-muted-foreground">Inventory current workloads and dependencies</p>
+                          </div>
+                          <div className="border-l-2 border-secondary pl-3">
+                            <h4 className="font-medium text-secondary">Phase 2: Planning (Weeks 3-4)</h4>
+                            <p className="text-muted-foreground">Design target architecture and migration strategy</p>
+                          </div>
+                          <div className="border-l-2 border-gcp-primary pl-3">
+                            <h4 className="font-medium text-gcp-primary">Phase 3: Migration (Weeks 5-12)</h4>
+                            <p className="text-muted-foreground">Execute migration in phases with testing</p>
+                          </div>
+                          <div className="border-l-2 border-aws pl-3">
+                            <h4 className="font-medium text-aws">Phase 4: Optimization (Ongoing)</h4>
+                            <p className="text-muted-foreground">Monitor, optimize, and scale as needed</p>
+                          </div>
+                        </div>
                       </CardContent>
                     </Card>
                     
                     <Card>
                       <CardContent className="p-4">
-                        <h3 className="font-semibold mb-2">Cost Optimization Tips</h3>
-                        <ul className="text-sm space-y-1 text-muted-foreground">
-                          <li>• Consider reserved instances for 30-60% savings</li>
-                          <li>• Use spot instances for non-critical workloads</li>
-                          <li>• Implement auto-scaling to optimize usage</li>
-                          <li>• Monitor and eliminate unused resources</li>
-                        </ul>
+                        <h3 className="font-semibold mb-3">Migration Best Practices</h3>
+                        <div className="space-y-2 text-sm">
+                          <div className="flex items-start gap-2">
+                            <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                            <p><strong>Start Small:</strong> Begin with non-critical workloads to gain experience</p>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <div className="w-2 h-2 rounded-full bg-secondary mt-2 flex-shrink-0"></div>
+                            <p><strong>Data Strategy:</strong> Plan data migration carefully with backup strategies</p>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <div className="w-2 h-2 rounded-full bg-gcp-primary mt-2 flex-shrink-0"></div>
+                            <p><strong>Security First:</strong> Implement security and compliance from day one</p>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <div className="w-2 h-2 rounded-full bg-aws mt-2 flex-shrink-0"></div>
+                            <p><strong>Training:</strong> Ensure team is trained on new cloud platform</p>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <div className="w-2 h-2 rounded-full bg-azure mt-2 flex-shrink-0"></div>
+                            <p><strong>Monitoring:</strong> Set up comprehensive monitoring and alerting</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <Card>
+                      <CardContent className="p-4 text-center">
+                        <h4 className="font-semibold mb-2 text-primary">Cloud Provider Benefits</h4>
+                        <p className="text-sm text-muted-foreground mb-3">
+                          Why choose {cheapest.toUpperCase()} for your migration?
+                        </p>
+                        <div className="text-xs space-y-1">
+                          {cheapest === 'aws' && (
+                            <>
+                              <p>• Largest market share and ecosystem</p>
+                              <p>• Extensive third-party integrations</p>
+                              <p>• Mature enterprise features</p>
+                            </>
+                          )}
+                          {cheapest === 'azure' && (
+                            <>
+                              <p>• Best integration with Microsoft tools</p>
+                              <p>• Strong hybrid cloud capabilities</p>
+                              <p>• Enterprise-focused features</p>
+                            </>
+                          )}
+                          {cheapest === 'gcp' && (
+                            <>
+                              <p>• Advanced AI/ML capabilities</p>
+                              <p>• Competitive pricing model</p>
+                              <p>• Strong data analytics tools</p>
+                            </>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    
+                    <Card>
+                      <CardContent className="p-4 text-center">
+                        <h4 className="font-semibold mb-2 text-secondary">Cost Optimization</h4>
+                        <p className="text-sm text-muted-foreground mb-3">
+                          Save up to 60% with these strategies
+                        </p>
+                        <div className="text-xs space-y-1 text-left">
+                          <p>• Reserved instances for predictable workloads</p>
+                          <p>• Auto-scaling for variable demand</p>
+                          <p>• Spot instances for batch processing</p>
+                          <p>• Right-sizing based on usage patterns</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    
+                    <Card>
+                      <CardContent className="p-4 text-center">
+                        <h4 className="font-semibold mb-2 text-gcp-primary">Migration Tools</h4>
+                        <p className="text-sm text-muted-foreground mb-3">
+                          Leverage these migration services
+                        </p>
+                        <div className="text-xs space-y-1 text-left">
+                          <p>• Database migration services</p>
+                          <p>• Server migration tools</p>
+                          <p>• Application modernization guides</p>
+                          <p>• Cost calculator and assessment tools</p>
+                        </div>
                       </CardContent>
                     </Card>
                   </div>
