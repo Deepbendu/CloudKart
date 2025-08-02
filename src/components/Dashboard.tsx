@@ -24,16 +24,16 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
   ];
 
   const categories = [
-    { name: "Compute", icon: Server, count: 28, color: "text-blue-600" },
-    { name: "Storage", icon: Database, count: 21, color: "text-green-600" },
-    { name: "AI/ML", icon: Zap, count: 19, color: "text-purple-600" },
-    { name: "Security", icon: Shield, count: 16, color: "text-red-600" },
+    { name: "Compute", icon: Server, count: 28, color: "text-blue-600", category: "Compute" },
+    { name: "Storage", icon: Database, count: 21, color: "text-green-600", category: "Storage" },
+    { name: "AI/ML", icon: Zap, count: 19, color: "text-purple-600", category: "AI/ML" },
+    { name: "Security", icon: Shield, count: 16, color: "text-red-600", category: "Security" },
   ];
 
   const quickActions = [
     {
       title: "Explore Services",
-      description: "Browse 100+ cloud services across providers",
+      description: "Browse 100+ cloud services",
       icon: Cloud,
       action: () => onNavigate("explorer"),
       variant: "hero" as const,
@@ -140,7 +140,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                 <div
                   key={category.name}
                   className="flex items-center space-x-3 p-4 rounded-lg bg-gradient-card hover:shadow-soft transition-all duration-300 cursor-pointer"
-                  onClick={() => onNavigate("explorer")}
+                  onClick={() => onNavigate(`explorer?category=${category.category}`)}
                 >
                   <IconComponent className={`h-8 w-8 ${category.color}`} />
                   <div>

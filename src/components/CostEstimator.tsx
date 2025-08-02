@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -16,14 +16,31 @@ import {
   Globe,
   TrendingUp,
   AlertTriangle,
-  Lightbulb
+  Lightbulb,
+  Clock,
+  MapPin,
+  Settings,
+  FileText,
+  ArrowRight
 } from "lucide-react";
+import { cloudServices } from "@/data/services";
 
 const CostEstimator = () => {
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [currentProvider, setCurrentProvider] = useState("aws");
   const [targetProvider, setTargetProvider] = useState("gcp");
   const [migrationComplexity, setMigrationComplexity] = useState("medium");
+  const [selectedSpecificService, setSelectedSpecificService] = useState("");
+  const [availableServices, setAvailableServices] = useState<any[]>([]);
+
+  // Filter services based on selected provider
+  useEffect(() => {
+    const filtered = cloudServices.filter(service => 
+      currentProvider === "on-premise" ? true : service.provider.toLowerCase() === currentProvider
+    );
+    setAvailableServices(filtered);
+    setSelectedSpecificService(""); // Reset service selection when provider changes
+  }, [currentProvider]);
 
   const serviceOptions = [
     { id: "compute", name: "Compute/VMs", icon: Server },
@@ -34,22 +51,53 @@ const CostEstimator = () => {
     { id: "security", name: "Security", icon: Shield }
   ];
 
+  const getEquivalentService = (sourceService: string, targetProv: string) => {
+    const mappings: Record<string, Record<string, string>> = {
+      "aws-s3": {
+        azure: "Azure Blob Storage",
+        gcp: "Google Cloud Storage"
+      },
+      "aws-ec2": {
+        azure: "Azure Virtual Machines", 
+        gcp: "Google Compute Engine"
+      },
+      "aws-rds": {
+        azure: "Azure SQL Database",
+        gcp: "Google Cloud SQL"
+      },
+      "aws-lambda": {
+        azure: "Azure Functions",
+        gcp: "Google Cloud Functions"
+      }
+    };
+    return mappings[sourceService]?.[targetProv] || "Manual assessment needed";
+  };
+
   const getMigrationStrategy = () => {
     const strategies = {
       simple: {
         duration: "2-4 weeks",
         approach: "Lift and Shift",
-        description: "Direct migration with minimal changes to existing architecture"
+        description: "Direct migration with minimal changes to existing architecture",
+        effort: "Low",
+        riskLevel: "Low",
+        tools: ["AWS Application Migration Service", "Azure Migrate", "Google Cloud Migrate for Compute Engine"]
       },
       medium: {
         duration: "1-3 months", 
         approach: "Re-platform",
-        description: "Some optimization and cloud-native service adoption"
+        description: "Some optimization and cloud-native service adoption",
+        effort: "Medium",
+        riskLevel: "Medium", 
+        tools: ["AWS Database Migration Service", "Azure Database Migration Service", "Google Database Migration Service"]
       },
       complex: {
         duration: "3-12 months",
         approach: "Re-architect", 
-        description: "Complete redesign using cloud-native patterns and services"
+        description: "Complete redesign using cloud-native patterns and services",
+        effort: "High",
+        riskLevel: "High",
+        tools: ["Custom migration tools", "Professional services", "Multi-phase approach"]
       }
     };
     return strategies[migrationComplexity as keyof typeof strategies];
@@ -170,6 +218,25 @@ const CostEstimator = () => {
                   })}
                 </div>
               </div>
+
+              {availableServices.length > 0 && (
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Specific Service (Optional)</label>
+                  <Select value={selectedSpecificService} onValueChange={setSelectedSpecificService}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a specific service" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">None selected</SelectItem>
+                      {availableServices.map((service) => (
+                        <SelectItem key={service.id} value={service.id}>
+                          {service.name} - {service.description.substring(0, 40)}...
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -193,7 +260,7 @@ const CostEstimator = () => {
                   <Rocket className="h-5 w-5 text-primary" />
                   <h3 className="font-semibold text-primary">Your Migration Plan</h3>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
                   <div>
                     <span className="font-medium">Strategy:</span>
                     <p className="text-muted-foreground">{getMigrationStrategy().approach}</p>
@@ -203,6 +270,10 @@ const CostEstimator = () => {
                     <p className="text-muted-foreground">{getMigrationStrategy().duration}</p>
                   </div>
                   <div>
+                    <span className="font-medium">Effort:</span>
+                    <p className="text-muted-foreground">{getMigrationStrategy().effort}</p>
+                  </div>
+                  <div>
                     <span className="font-medium">Services:</span>
                     <p className="text-muted-foreground">{selectedServices.length} selected</p>
                   </div>
@@ -210,12 +281,24 @@ const CostEstimator = () => {
                 <p className="text-xs text-muted-foreground mt-2">
                   {getMigrationStrategy().description}
                 </p>
+                {selectedSpecificService && (
+                  <div className="mt-3 p-2 bg-background rounded border">
+                    <div className="flex items-center gap-2">
+                      <ArrowRight className="h-4 w-4 text-primary" />
+                      <span className="text-sm font-medium">Service Migration:</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground ml-6">
+                      {cloudServices.find(s => s.id === selectedSpecificService)?.name} → {getEquivalentService(selectedSpecificService, targetProvider)}
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Tabs for detailed information */}
               <Tabs defaultValue="strategy" className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
+                <TabsList className="grid w-full grid-cols-4">
                   <TabsTrigger value="strategy">Migration Strategy</TabsTrigger>
+                  <TabsTrigger value="plan">Migration Plan</TabsTrigger>
                   <TabsTrigger value="dosdonts">Do's & Don'ts</TabsTrigger>
                   <TabsTrigger value="costtips">Cost-Saving Tips</TabsTrigger>
                 </TabsList>
@@ -225,15 +308,33 @@ const CostEstimator = () => {
                     <Card>
                       <CardContent className="p-4">
                         <h4 className="font-semibold mb-3 flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-600" />
-                          Recommended Approach
+                          <TrendingUp className="h-4 w-4 text-primary" />
+                          Migration Approach
                         </h4>
-                        <div className="space-y-2 text-sm">
-                          <p><strong>Phase 1:</strong> Assessment & Planning (2 weeks)</p>
-                          <p><strong>Phase 2:</strong> Pilot Migration (2-4 weeks)</p>
-                          <p><strong>Phase 3:</strong> Production Migration (varies)</p>
-                          <p><strong>Phase 4:</strong> Optimization (ongoing)</p>
+                        <div className="space-y-3 text-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium">Strategy:</span>
+                            <Badge variant="outline">{getMigrationStrategy().approach}</Badge>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium">Risk Level:</span>
+                            <Badge variant={getMigrationStrategy().riskLevel === 'Low' ? 'default' : 
+                                           getMigrationStrategy().riskLevel === 'Medium' ? 'secondary' : 'destructive'}>
+                              {getMigrationStrategy().riskLevel}
+                            </Badge>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium">Duration:</span>
+                            <span>{getMigrationStrategy().duration}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium">Effort Level:</span>
+                            <span>{getMigrationStrategy().effort}</span>
+                          </div>
                         </div>
+                        <p className="text-xs text-muted-foreground mt-3 p-2 bg-muted/50 rounded">
+                          {getMigrationStrategy().description}
+                        </p>
                       </CardContent>
                     </Card>
                     
@@ -256,6 +357,91 @@ const CostEstimator = () => {
                               <span className="text-muted-foreground">{consideration}</span>
                             </div>
                           ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="plan" className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <Card>
+                      <CardContent className="p-4">
+                        <h4 className="font-semibold mb-3 flex items-center gap-2">
+                          <FileText className="h-4 w-4 text-blue-600" />
+                          Pre-Migration Checklist
+                        </h4>
+                        <div className="space-y-2 text-sm">
+                          <div className="flex items-start gap-2">
+                            <CheckCircle className="h-3 w-3 text-green-600 mt-0.5 flex-shrink-0" />
+                            <span>Complete data inventory and dependency mapping</span>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <CheckCircle className="h-3 w-3 text-green-600 mt-0.5 flex-shrink-0" />
+                            <span>Perform security and compliance assessment</span>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <CheckCircle className="h-3 w-3 text-green-600 mt-0.5 flex-shrink-0" />
+                            <span>Configure network connectivity and firewall rules</span>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <CheckCircle className="h-3 w-3 text-green-600 mt-0.5 flex-shrink-0" />
+                            <span>Set up backup and rollback procedures</span>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <CheckCircle className="h-3 w-3 text-green-600 mt-0.5 flex-shrink-0" />
+                            <span>Prepare disaster recovery plan</span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    
+                    <Card>
+                      <CardContent className="p-4">
+                        <h4 className="font-semibold mb-3 flex items-center gap-2">
+                          <Settings className="h-4 w-4 text-purple-600" />
+                          Recommended Tools
+                        </h4>
+                        <div className="space-y-2 text-sm">
+                          {getMigrationStrategy().tools.map((tool, index) => (
+                            <div key={index} className="flex items-start gap-2">
+                              <Settings className="h-3 w-3 text-purple-600 mt-0.5 flex-shrink-0" />
+                              <span>{tool}</span>
+                            </div>
+                          ))}
+                        </div>
+                        {migrationComplexity === "complex" && (
+                          <div className="mt-3 p-2 bg-yellow-50 rounded text-xs">
+                            <p className="font-medium text-yellow-800">Recommendation:</p>
+                            <p className="text-yellow-700">Consider engaging professional services for complex migrations.</p>
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                    
+                    <Card>
+                      <CardContent className="p-4">
+                        <h4 className="font-semibold mb-3 flex items-center gap-2">
+                          <Clock className="h-4 w-4 text-green-600" />
+                          Timeline & Phases
+                        </h4>
+                        <div className="space-y-3 text-sm">
+                          <div className="border-l-2 border-primary pl-3">
+                            <p className="font-medium">Phase 1: Assessment</p>
+                            <p className="text-muted-foreground">1-2 weeks</p>
+                          </div>
+                          <div className="border-l-2 border-primary pl-3">
+                            <p className="font-medium">Phase 2: Planning</p>
+                            <p className="text-muted-foreground">1-2 weeks</p>
+                          </div>
+                          <div className="border-l-2 border-primary pl-3">
+                            <p className="font-medium">Phase 3: Migration</p>
+                            <p className="text-muted-foreground">{getMigrationStrategy().duration}</p>
+                          </div>
+                          <div className="border-l-2 border-primary pl-3">
+                            <p className="font-medium">Phase 4: Optimization</p>
+                            <p className="text-muted-foreground">Ongoing</p>
+                          </div>
                         </div>
                       </CardContent>
                     </Card>

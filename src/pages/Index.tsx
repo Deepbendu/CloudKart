@@ -10,7 +10,7 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
 
   const renderContent = () => {
-    switch (activeTab) {
+    switch (activeTab.split('?')[0]) { // Handle URL params
       case "dashboard":
         return <Dashboard onNavigate={setActiveTab} />;
       case "explorer":
