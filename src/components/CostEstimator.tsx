@@ -128,10 +128,17 @@ const CostEstimator = () => {
         <h2 className="text-3xl font-bold mb-2 flex items-center justify-center gap-2">
           <Rocket className="h-8 w-8 text-primary" />
           Migration Planner & Cost-Saving Tips
+          <Badge variant="secondary" className="ml-2">Beta</Badge>
         </h2>
         <p className="text-muted-foreground">
           Plan your cloud migration strategy and discover cost optimization opportunities
         </p>
+        <div className="mt-4 max-w-2xl mx-auto p-3 bg-muted/50 rounded-md border-l-4 border-primary">
+          <p className="text-sm text-muted-foreground text-center">
+            🚧 <strong>Work in Progress:</strong> More advanced features and migration tools coming soon! 
+            Current version provides basic guidance and cost-saving tips.
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

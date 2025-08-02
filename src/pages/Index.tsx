@@ -10,11 +10,15 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
 
   const renderContent = () => {
-    switch (activeTab.split('?')[0]) { // Handle URL params
+    const [tabName, params] = activeTab.split('?');
+    const urlParams = new URLSearchParams(params || '');
+    const category = urlParams.get('category');
+    
+    switch (tabName) {
       case "dashboard":
         return <Dashboard onNavigate={setActiveTab} />;
       case "explorer":
-        return <ServiceExplorer />;
+        return <ServiceExplorer initialCategory={category} />;
       case "compare":
         return <ServiceComparison />;
       case "estimator":

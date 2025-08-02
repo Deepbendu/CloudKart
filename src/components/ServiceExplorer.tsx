@@ -20,21 +20,29 @@ import {
 } from "lucide-react";
 import { cloudServices, categories } from "@/data/services";
 
-const ServiceExplorer = () => {
+interface ServiceExplorerProps {
+  initialCategory?: string | null;
+}
+
+const ServiceExplorer = ({ initialCategory }: ServiceExplorerProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedProvider, setSelectedProvider] = useState("all");
 
-  // Check for category parameter in URL
+  // Set category based on prop or URL parameter
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const categoryParam = urlParams.get('category');
-    if (categoryParam && categories.includes(categoryParam)) {
-      setSelectedCategory(categoryParam);
-      // Clear the URL parameter after setting the category
-      window.history.replaceState({}, '', window.location.pathname);
+    if (initialCategory && categories.includes(initialCategory)) {
+      setSelectedCategory(initialCategory);
+    } else {
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryParam = urlParams.get('category');
+      if (categoryParam && categories.includes(categoryParam)) {
+        setSelectedCategory(categoryParam);
+        // Clear the URL parameter after setting the category
+        window.history.replaceState({}, '', window.location.pathname);
+      }
     }
-  }, []);
+  }, [initialCategory]);
 
   const getProviderColor = (provider: string) => {
     switch (provider) {

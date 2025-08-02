@@ -8,11 +8,11 @@ interface HeaderProps {
 
 const Header = ({ activeTab, onTabChange }: HeaderProps) => {
   const tabs = [
-    { id: "dashboard", label: "Dashboard" },
-    { id: "explorer", label: "Service Explorer" },
-    { id: "compare", label: "Compare" },
-    { id: "estimator", label: "Cost Estimator" },
-    { id: "regions", label: "Regions" },
+    { id: "dashboard", label: "Home" },
+    { id: "explorer", label: "Cloud Services" },
+    { id: "compare", label: "Cloud Compare" },
+    { id: "estimator", label: "Migration Planner" },
+    { id: "regions", label: "Global Regions" },
   ];
 
   return (
