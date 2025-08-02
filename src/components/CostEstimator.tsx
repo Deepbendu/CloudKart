@@ -30,7 +30,7 @@ const CostEstimator = () => {
   const [currentProvider, setCurrentProvider] = useState("aws");
   const [targetProvider, setTargetProvider] = useState("gcp");
   const [migrationComplexity, setMigrationComplexity] = useState("medium");
-  const [selectedSpecificService, setSelectedSpecificService] = useState("");
+  const [selectedSpecificService, setSelectedSpecificService] = useState("none");
   const [availableServices, setAvailableServices] = useState<any[]>([]);
 
   // Filter services based on selected provider
@@ -39,7 +39,7 @@ const CostEstimator = () => {
       currentProvider === "on-premise" ? true : service.provider.toLowerCase() === currentProvider
     );
     setAvailableServices(filtered);
-    setSelectedSpecificService(""); // Reset service selection when provider changes
+    setSelectedSpecificService("none"); // Reset service selection when provider changes
   }, [currentProvider]);
 
   const serviceOptions = [
@@ -227,7 +227,7 @@ const CostEstimator = () => {
                       <SelectValue placeholder="Select a specific service" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">None selected</SelectItem>
+                      <SelectItem value="none">None selected</SelectItem>
                       {availableServices.map((service) => (
                         <SelectItem key={service.id} value={service.id}>
                           {service.name} - {service.description.substring(0, 40)}...
@@ -281,7 +281,7 @@ const CostEstimator = () => {
                 <p className="text-xs text-muted-foreground mt-2">
                   {getMigrationStrategy().description}
                 </p>
-                {selectedSpecificService && (
+                {selectedSpecificService && selectedSpecificService !== "none" && (
                   <div className="mt-3 p-2 bg-background rounded border">
                     <div className="flex items-center gap-2">
                       <ArrowRight className="h-4 w-4 text-primary" />
