@@ -112,9 +112,9 @@ const ServiceComparison = () => {
         {equivalentServices.map((serviceGroup, index) => (
           <Card key={index} className="overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x">
+              <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x">
                 {/* AWS Service */}
-                <div className={`p-6 ${getProviderColor('AWS')} border-l-4`}>
+                <div className={`p-4 sm:p-6 ${getProviderColor('AWS')} border-l-4`}>
                   {serviceGroup.aws ? (
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
@@ -176,7 +176,7 @@ const ServiceComparison = () => {
                 </div>
 
                 {/* Azure Service */}
-                <div className={`p-6 ${getProviderColor('Azure')} border-l-4`}>
+                <div className={`p-4 sm:p-6 ${getProviderColor('Azure')} border-l-4`}>
                   {serviceGroup.azure ? (
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
@@ -238,7 +238,7 @@ const ServiceComparison = () => {
                 </div>
 
                 {/* GCP Service */}
-                <div className={`p-6 ${getProviderColor('GCP')} border-l-4`}>
+                <div className={`p-4 sm:p-6 ${getProviderColor('GCP')} border-l-4`}>
                   {serviceGroup.gcp ? (
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
