@@ -26,12 +26,12 @@ import {
 import { cloudServices } from "@/data/services";
 
 const CostEstimator = () => {
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [selectedServices, setSelectedServices] = useState([]);
   const [currentProvider, setCurrentProvider] = useState("aws");
   const [targetProvider, setTargetProvider] = useState("gcp");
   const [migrationComplexity, setMigrationComplexity] = useState("medium");
   const [selectedSpecificService, setSelectedSpecificService] = useState("none");
-  const [availableServices, setAvailableServices] = useState<any[]>([]);
+  const [availableServices, setAvailableServices] = useState([]);
 
   // Filter services based on selected provider
   useEffect(() => {
@@ -51,8 +51,8 @@ const CostEstimator = () => {
     { id: "security", name: "Security", icon: Shield }
   ];
 
-  const getEquivalentService = (sourceService: string, targetProv: string) => {
-    const mappings: Record<string, Record<string, string>> = {
+  const getEquivalentService = (sourceService, targetProv) => {
+    const mappings = {
       "aws-s3": {
         azure: "Azure Blob Storage",
         gcp: "Google Cloud Storage"
@@ -100,10 +100,10 @@ const CostEstimator = () => {
         tools: ["Custom migration tools", "Professional services", "Multi-phase approach"]
       }
     };
-    return strategies[migrationComplexity as keyof typeof strategies];
+    return strategies[migrationComplexity];
   };
 
-  const getProviderAdvice = (provider: string) => {
+  const getProviderAdvice = (provider) => {
     const advice = {
       aws: {
         strengths: ["Largest service portfolio", "Mature ecosystem", "Extensive documentation"],
@@ -118,7 +118,7 @@ const CostEstimator = () => {
         considerations: ["Smaller service portfolio", "Less third-party integrations"]
       }
     };
-    return advice[provider as keyof typeof advice];
+    return advice[provider];
   };
 
   return (

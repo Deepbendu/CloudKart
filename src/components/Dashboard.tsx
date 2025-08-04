@@ -12,11 +12,7 @@ import {
   ArrowRight 
 } from "lucide-react";
 
-interface DashboardProps {
-  onNavigate: (tab: string) => void;
-}
-
-const Dashboard = ({ onNavigate }: DashboardProps) => {
+const Dashboard = ({ onNavigate }) => {
   const providerStats = [
     { name: "AWS", services: 42, color: "bg-aws", icon: Cloud },
     { name: "Azure", services: 38, color: "bg-azure", icon: Cloud },
@@ -36,28 +32,28 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
       description: "Browse 100+ cloud services",
       icon: Cloud,
       action: () => onNavigate("explorer"),
-      variant: "hero" as const,
+      variant: "hero",
     },
     {
       title: "Compare Services",
       description: "Side-by-side feature comparison",
       icon: TrendingUp,
       action: () => onNavigate("compare"),
-      variant: "comparison" as const,
+      variant: "comparison",
     },
     {
       title: "Estimate Costs",
       description: "Calculate monthly cloud costs",
       icon: DollarSign,
       action: () => onNavigate("estimator"),
-      variant: "azure" as const,
+      variant: "azure",
     },
     {
       title: "Check Regions",
       description: "Service availability by region",
       icon: Globe,
       action: () => onNavigate("regions"),
-      variant: "gcp" as const,
+      variant: "gcp",
     },
   ];
 
@@ -170,7 +166,7 @@ const Dashboard = ({ onNavigate }: DashboardProps) => {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{action.title}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{action.description}</p>
-                <Button variant={action.variant} size="sm" className="w-full bg-gradient-hero text-white hover:opacity-90">
+                <Button variant="default" size="sm" className="w-full bg-gradient-hero text-white hover:opacity-90">
                   Get Started
                 </Button>
               </CardContent>

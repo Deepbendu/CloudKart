@@ -20,11 +20,7 @@ import {
 } from "lucide-react";
 import { cloudServices, categories } from "@/data/services";
 
-interface ServiceExplorerProps {
-  initialCategory?: string | null;
-}
-
-const ServiceExplorer = ({ initialCategory }: ServiceExplorerProps) => {
+const ServiceExplorer = ({ initialCategory }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedProvider, setSelectedProvider] = useState("all");
@@ -44,7 +40,7 @@ const ServiceExplorer = ({ initialCategory }: ServiceExplorerProps) => {
     }
   }, [initialCategory]);
 
-  const getProviderColor = (provider: string) => {
+  const getProviderColor = (provider) => {
     switch (provider) {
       case 'AWS': return 'bg-aws text-white';
       case 'Azure': return 'bg-azure text-white';
@@ -53,7 +49,7 @@ const ServiceExplorer = ({ initialCategory }: ServiceExplorerProps) => {
     }
   };
 
-  const getCategoryIcon = (category: string) => {
+  const getCategoryIcon = (category) => {
     switch (category) {
       case 'Compute': return Server;
       case 'Storage': return Database;
@@ -69,7 +65,7 @@ const ServiceExplorer = ({ initialCategory }: ServiceExplorerProps) => {
     }
   };
 
-  const getServiceTypeTag = (service: any) => {
+  const getServiceTypeTag = (service) => {
     // Generate functional tags based on service features and category
     if (service.category === 'Compute') return 'Virtual Machines';
     if (service.category === 'Storage') return 'Data Storage';
@@ -101,7 +97,7 @@ const ServiceExplorer = ({ initialCategory }: ServiceExplorerProps) => {
     }
     acc[service.category].push(service);
     return acc;
-  }, {} as Record<string, any[]>);
+  }, {});
 
   return (
     <div className="space-y-6">
@@ -193,16 +189,17 @@ const ServiceExplorer = ({ initialCategory }: ServiceExplorerProps) => {
         <div className="space-y-8">
           {Object.entries(servicesByCategory).map(([category, services]) => {
             const CategoryIcon = getCategoryIcon(category);
+            const serviceArray = Array.isArray(services) ? services : [];
             return (
               <div key={category}>
                 <div className="flex items-center gap-2 mb-4">
                   <CategoryIcon className="h-6 w-6 text-primary" />
                   <h3 className="text-2xl font-bold">{category}</h3>
-                  <Badge variant="outline">{services.length} services</Badge>
+                  <Badge variant="outline">{serviceArray.length} services</Badge>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {services.map((service) => (
+                  {serviceArray.map((service) => (
                     <Card key={service.id} className="h-full hover:shadow-lg transition-shadow duration-200">
                       <CardHeader>
                         <div className="flex items-start justify-between">
@@ -239,7 +236,7 @@ const ServiceExplorer = ({ initialCategory }: ServiceExplorerProps) => {
                         <div className="space-y-2">
                           <span className="text-sm font-medium">Key Features:</span>
                           <div className="flex flex-wrap gap-1">
-                            {service.features.map((feature: string, index: number) => (
+                            {service.features.map((feature, index) => (
                               <Badge key={index} variant="outline" className="text-xs">
                                 {feature}
                               </Badge>

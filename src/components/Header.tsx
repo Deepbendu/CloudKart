@@ -1,12 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Cloud, Menu } from "lucide-react";
 
-interface HeaderProps {
-  activeTab: string;
-  onTabChange: (tab: string) => void;
-}
-
-const Header = ({ activeTab, onTabChange }: HeaderProps) => {
+const Header = ({ activeTab, onTabChange }) => {
   const tabs = [
     { id: "dashboard", label: "Home" },
     { id: "explorer", label: "Cloud Services" },
