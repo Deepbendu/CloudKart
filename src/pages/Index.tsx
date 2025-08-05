@@ -33,7 +33,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header activeTab={activeTab} onTabChange={setActiveTab} />
-      <main className="container mx-auto px-2 sm:px-4 py-4 sm:py-6 lg:py-8">
+      <main className="container mx-auto px-4 py-8">
         {renderContent()}
       </main>
     </div>

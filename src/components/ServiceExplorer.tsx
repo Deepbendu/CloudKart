@@ -121,7 +121,7 @@ const ServiceExplorer = ({ initialCategory }) => {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="space-y-2">
               <label className="text-sm font-medium">Search Services</label>
               <div className="relative">
@@ -198,7 +198,7 @@ const ServiceExplorer = ({ initialCategory }) => {
                   <Badge variant="outline">{serviceArray.length} services</Badge>
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {serviceArray.map((service) => (
                     <Card key={service.id} className="h-full hover:shadow-lg transition-shadow duration-200">
                       <CardHeader>
