@@ -1,8 +1,7 @@
 # ☁️ CloudKart – Multi-Cloud Comparison Hub
 
-![React](https://img.shields.io/badge/Frontend-React-blue?logo=react)  
-![Tailwind](https://img.shields.io/badge/Styling-TailwindCSS-38bdf8?logo=tailwindcss)  
-![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
+![React](https://img.shields.io/badge/Frontend-React-blue?logo=react) ![Tailwind](https://img.shields.io/badge/Styling-TailwindCSS-38bdf8?logo=tailwindcss) ![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
+
 
 **CloudKart** is a lightweight multi-cloud dashboard to help users **compare cloud services and costs across AWS, Azure, and GCP**.  
 Built to assist aspiring **cloud architects**, learners, and tech decision-makers in exploring and comparing services across providers.
@@ -14,6 +13,7 @@ This project demonstrates practical expertise in **multi-cloud architecture**, *
 ## 🚀 Live Demo
 
 🔗 [CloudKart Live](https://cloudkart.vercel.app)  
+
 _Hosted on Vercel — instant deployment with React + Tailwind_
 
 ---
@@ -64,8 +64,8 @@ Hi, I'm **Deepbendu Debnath** — passionate about cloud technologies, DevOps, a
 I love turning ideas into intelligent cloud-native apps with automation, AI, and clean UIs.
 
 📬 Let’s connect:  
-[GitHub](https://github.com/Deepbendu) • [LinkedIn](https://www.linkedin.com/in/deepbendu-debnath)
-
+- [GitHub](https://github.com/Deepbendu)
+- [LinkedIn](https://www.linkedin.com/in/deepbendu-debnath)
 ---
 
 ## 📜 Cloud Certifications
