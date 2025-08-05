@@ -1,3 +1,18 @@
+export interface CloudService {
+  id: string;
+  name: string;
+  provider: 'AWS' | 'Azure' | 'GCP';
+  category: string;
+  description: string;
+  pricing: string;
+  features: string[];
+  regions: string[];
+  tags: string[];
+  freeTier: boolean;
+  popular: boolean;
+  documentationUrl?: string;
+}
+
 export const categories = [
   'Compute',
   'Storage',
@@ -11,7 +26,7 @@ export const categories = [
   'Analytics'
 ];
 
-export const cloudServices = [
+export const cloudServices: CloudService[] = [
   // AWS Services
   {
     id: 'aws-ec2',
@@ -493,11 +508,11 @@ export const cloudServices = [
   }
 ];
 
-export const getServicesByCategory = (category) => {
+export const getServicesByCategory = (category: string) => {
   return cloudServices.filter(service => service.category === category);
 };
 
-export const getServicesByProvider = (provider) => {
+export const getServicesByProvider = (provider: 'AWS' | 'Azure' | 'GCP') => {
   return cloudServices.filter(service => service.provider === provider);
 };
 
