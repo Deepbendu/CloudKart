@@ -141,7 +141,7 @@ const CostEstimator = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Migration Configuration */}
         <div className="lg:col-span-1">
           <Card>
@@ -200,7 +200,7 @@ const CostEstimator = () => {
 
               <div className="space-y-2">
                 <label className="text-sm font-medium">Services to Migrate</label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 xs:grid-cols-2 gap-2">
                   {serviceOptions.map((service) => {
                     const Icon = service.icon;
                     const isSelected = selectedServices.includes(service.id);
@@ -267,7 +267,7 @@ const CostEstimator = () => {
                   <Rocket className="h-5 w-5 text-primary" />
                   <h3 className="font-semibold text-primary">Your Migration Plan</h3>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 text-sm">
                   <div>
                     <span className="font-medium">Strategy:</span>
                     <p className="text-muted-foreground">{getMigrationStrategy().approach}</p>
@@ -303,7 +303,7 @@ const CostEstimator = () => {
 
               {/* Tabs for detailed information */}
               <Tabs defaultValue="strategy" className="w-full">
-                <TabsList className="grid w-full grid-cols-4">
+                <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4">
                   <TabsTrigger value="strategy">Migration Strategy</TabsTrigger>
                   <TabsTrigger value="plan">Migration Plan</TabsTrigger>
                   <TabsTrigger value="dosdonts">Do's & Don'ts</TabsTrigger>
@@ -311,7 +311,7 @@ const CostEstimator = () => {
                 </TabsList>
                 
                 <TabsContent value="strategy" className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <Card>
                       <CardContent className="p-4">
                         <h4 className="font-semibold mb-3 flex items-center gap-2">
@@ -371,7 +371,7 @@ const CostEstimator = () => {
                 </TabsContent>
 
                 <TabsContent value="plan" className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <Card>
                       <CardContent className="p-4">
                         <h4 className="font-semibold mb-3 flex items-center gap-2">
