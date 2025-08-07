@@ -11,10 +11,10 @@ This project demonstrates practical expertise in **multi-cloud architecture**, *
 
 ## 🚀 Live Demo
 
-🔗 [CloudKart Live](https://cloudkart.vercel.app)  
-_Hosted on Vercel — instant deployment with Vite + React + Tailwind_
+👉 **Explore it live:** [🌐 CloudKart – Deployed on Vercel](https://cloudkart.vercel.app)
 
----
+_Instant deployment powered by **Vite**, **React**, and **Tailwind CSS** using **Vercel**._
+
 
 ## 🔍 Features
 
