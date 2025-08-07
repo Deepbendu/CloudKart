@@ -1,73 +1,80 @@
-# Welcome to your Lovable project
+# ☁️ CloudKart – Multi-Cloud Comparison Hub
 
-## Project info
+![React](https://img.shields.io/badge/Frontend-React-blue?logo=react)  ![Tailwind](https://img.shields.io/badge/Styling-TailwindCSS-38bdf8?logo=tailwindcss)  ![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
 
-**URL**: https://lovable.dev/projects/9b2825fd-658f-462c-8414-5c6584fefe16
+**CloudKart** is a lightweight multi-cloud dashboard to help users **compare cloud services and costs across AWS, Azure, and GCP**.  
+Built to assist aspiring **cloud architects**, learners, and tech decision-makers in exploring and comparing services across providers.
 
-## How can I edit this code?
+This project demonstrates practical expertise in **multi-cloud architecture**, **cost optimization**, and **cloud migration planning** — critical skills for roles like **Cloud Engineer**, **Cloud Consultant**, or **Solutions Architect**.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🚀 Live Demo
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9b2825fd-658f-462c-8414-5c6584fefe16) and start prompting.
+🔗 [CloudKart Live](https://cloudkart.vercel.app)  
+_Hosted on Vercel — instant deployment with React + Tailwind_
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🔍 Features
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🧭 Service Comparison
+- Explore **equivalent services** across AWS, Azure, and GCP.
+- Understand naming differences and platform-specific offerings.
+- Useful for teams evaluating providers side-by-side.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 💸 Cost Estimator
+- View **side-by-side pricing estimates** for compute, storage, and bandwidth.
+- Provides a directional cost comparison, not a full pricing calculator.
+- Aids in choosing cost-effective options.
 
-Follow these steps:
+### 🌍 Region Explorer
+- Visualize **service availability by region** (e.g., EC2 in `us-east-1`, Azure VM in `centralindia`).
+- Avoid vendor lock-in and plan geo-resilient cloud deployments.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 📦 Migration Planner (Beta)
+- Get **basic guidance** for workload migration between providers.
+- Compare available services and potential platform gaps.
+- Useful for building migration strategies.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 📊 Interactive UI
+- Built with **React + TailwindCSS** for a clean, responsive interface.
+- Snappy, minimal UX with zero backend dependencies.
+- Deployed on Vercel with fast global access.
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+## ⚙️ Built With
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Vite** – blazing fast frontend tooling  
+- **TypeScript** – for type-safe development  
+- **React** – UI library for dynamic rendering  
+- **shadcn/ui** – modern UI components  
+- **Tailwind CSS** – utility-first styling framework  
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/9b2825fd-658f-462c-8414-5c6584fefe16) and click on Share -> Publish.
+## 👨‍💻 About Me
 
-## Can I connect a custom domain to my Lovable project?
+Hi, I'm **Deepbendu Debnath** — passionate about cloud technologies, DevOps, and building tools that simplify cloud decisions.  
+I love turning ideas into intelligent cloud-native apps with automation, AI, and clean UIs.
 
-Yes, you can!
+📬 Let’s connect:  
+[GitHub](https://github.com/Deepbendu) • [LinkedIn](https://www.linkedin.com/in/deepbendu-debnath)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📜 Cloud Certifications
+
+### ✅ AWS Certified Solutions Architect – Associate  
+🔗 [Verify on AWS CertMetrics](https://cp.certmetrics.com/amazon/en/public/verify/credential/40d503c796ac43eb9f5d3912b5adad30)  
+🔗 [View My AWS Badge](https://www.credly.com/badges/e8e56a26-b626-4c1c-b628-a09a277be295/public_url)
+
+### ✅ Oracle Cloud Infrastructure Architect – Associate  
+🔗 [View My OCI Badge](https://catalog-education.oracle.com/pls/certview/sharebadge?id=489BF9264BD40C0BBBD9D98EA9C1ADB0A7E67EFB4F71D90DECF03F12DB66C780)
+
+---
+
+> 🧠 _CloudKart showcases cross-platform cloud knowledge and the ability to build educational tools for multi-cloud awareness._
